@@ -1,5 +1,6 @@
-// components/Login.js
-import { useState, useEffect } from 'react'; // ✅ Needed for state and lifecycle
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -68,3 +69,4 @@ const styles = {
   image: { borderRadius: 10, width: '100%', height: 'auto' },
   loading: { fontSize: 18, color: '#555', marginTop: 50 }
 };
+

@@ -1,11 +1,6 @@
-// components/Login.js
-// import { useState, useEffect } from 'react';
-import Login from '../src/components/Login'; // Capital L matches filename
+'use client';
 
-export default function LoginPage() {
-  return <Login />;
-}
-
+import { useState, useEffect } from 'react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,17 +13,13 @@ export default function Login() {
     document.title = 'Login | SmartRailNAV';
   }, []);
 
-  const validateEmail = (email) => {
-    // Basic email pattern check
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleLogin = (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
-    // Validation checks
     if (!email || !password) {
       setError('Both fields are required.');
       return;
@@ -42,13 +33,10 @@ export default function Login() {
       return;
     }
 
-    // Fake login check (replace this with real API call)
     if (email === 'user@example.com' && password === 'password123') {
       setSuccess('Login successful! Redirecting...');
-      setError('');
-      // Simulate redirection after success
       setTimeout(() => {
-        window.location.href = '/stations'; // Redirect after login
+        window.location.href = '/stations';
       }, 2000);
     } else {
       setError('Invalid email or password.');
@@ -126,3 +114,4 @@ const styles = {
     marginTop: 15
   }
 };
+
