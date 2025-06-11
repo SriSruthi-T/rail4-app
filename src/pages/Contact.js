@@ -12,10 +12,12 @@ export default function Contact() {
           max-width: 600px;
           margin: 0 auto;
           font-family: 'Inter', sans-serif;
+        
         }
         h1 {
           text-align: center;
           margin-bottom: 1rem;
+           color: #0070f3;
         }
       `}</style>
     </main>

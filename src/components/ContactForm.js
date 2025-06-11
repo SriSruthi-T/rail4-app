@@ -95,6 +95,7 @@ export default function ContactForm() {
           display: flex;
           flex-direction: column;
           font-weight: 500;
+           color: #0070f3;
         }
 
         input,
