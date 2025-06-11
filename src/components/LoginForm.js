@@ -1,10 +1,15 @@
-// src/components/LoginForm.js
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const styles = {
-  form: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '15px', // ✅ Must be a string with units
+  },
   input: {
     padding: '10px 15px',
     width: '300px',
@@ -26,19 +31,27 @@ const styles = {
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     console.log("LoginForm mounted");
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // ✅ Prevents default page reload
     console.log("Logging in:", email, password);
-    // Add login logic
+
+    // ✅ Dummy login logic
+    if (email === 'srisruthi@gmail.com' && password === '12345678') {
+      alert('Login successful!');
+      router.push('/stations'); // ✅ Redirect to stations page
+    } else {
+      alert('Invalid credentials');
+    }
   };
 
   return (
-    <form style={styles.form} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={styles.form}>
       <input
         type="email"
         placeholder="Email"
@@ -55,7 +68,9 @@ export default function LoginForm() {
         style={styles.input}
         required
       />
-      <button type="submit" style={styles.button}>Log In</button>
+      <button type="submit" style={styles.button}>
+        Log In
+      </button>
     </form>
   );
 }
