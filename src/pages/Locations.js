@@ -1,6 +1,6 @@
-// pages/locations.js
 import Image from 'next/image';
 import Link from 'next/link';
+import LocationViewer from '@/components/LocationViewer';
 
 export default function Locations() {
   return (
