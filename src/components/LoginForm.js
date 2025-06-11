@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const styles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '15px', // ✅ Must be a string with units
+    gap: 15,
+    marginTop: 20,
   },
   input: {
     padding: '10px 15px',
@@ -26,51 +26,54 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
   },
+  successMessage: {
+    marginTop: 20,
+    color: 'green',
+    fontWeight: 'bold',
+  },
 };
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log("LoginForm mounted");
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // ✅ Prevents default page reload
-    console.log("Logging in:", email, password);
+    e.preventDefault();
 
-    // ✅ Dummy login logic
-    if (email === 'srisruthi@gmail.com' && password === '12345678') {
-      alert('Login successful!');
-      router.push('/stations'); // ✅ Redirect to stations page
+    if (email && password) {
+      // Simulate login success
+      setIsLoggedIn(true);
+      console.log('Logged in with:', { email, password });
     } else {
-      alert('Invalid credentials');
+      alert('Please enter both email and password');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        style={styles.input}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={styles.input}
-        required
-      />
-      <button type="submit" style={styles.button}>
-        Log In
-      </button>
-    </form>
+    <>
+      <form style={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={styles.input}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={styles.input}
+          required
+        />
+        <button type="submit" style={styles.button}>Log In</button>
+      </form>
+
+      {isLoggedIn && <div style={styles.successMessage}>✅ Successfully logged in!</div>}
+    </>
   );
 }
+
