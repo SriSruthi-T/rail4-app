@@ -1,10 +1,9 @@
 'use client';
-
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Home() {
+export default function HomeComponent() {
   const [welcomeMessage, setWelcomeMessage] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -12,10 +11,12 @@ export default function Home() {
     console.log('Home page mounted');
     document.title = 'Home | SmartRailNAV';
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setWelcomeMessage('Welcome to SmartRailNAV 🚆');
       setLoading(false);
     }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -35,7 +36,7 @@ export default function Home() {
 
       <main style={styles.main}>
         {loading ? (
-          <p style={styles.loading}>Loading...</p>
+          <p style={styles.subtitle}>Loading...</p>
         ) : (
           <>
             <h2 style={styles.welcome}>{welcomeMessage}</h2>
@@ -66,7 +67,6 @@ const styles = {
   subtitle: { fontSize: 18, margin: '10px 0 20px' },
   button: { backgroundColor: '#0070f3', color: '#fff', padding: '10px 20px', borderRadius: 5, textDecoration: 'none' },
   imageWrapper: { marginTop: 30 },
-  image: { borderRadius: 10, width: '100%', height: 'auto' },
-  loading: { fontSize: 18, color: '#555', marginTop: 50 }
+  image: { borderRadius: 10, width: '100%', height: 'auto' }
 };
 
