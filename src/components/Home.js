@@ -46,12 +46,13 @@ export default function Home() {
         <div style={styles.navContainer}>
           <div style={styles.logo}>SMARTRAILNAV</div>
           <nav style={styles.nav}>
-            <Link href="/stations" style={styles.navLink}>Stations</Link>
-            <Link href="/facilities" style={styles.navLink}>Facilities</Link>
-            <Link href="/locations" style={styles.navLink}>Locations</Link>
-            <Link href="/login" style={styles.navLink}>Log In</Link>
-            <a href="#contact" style={styles.ctaNav}>Contact Us</a>
+             <Link href="/Stations"><span style={styles.navLink}>Stations</span></Link>
+             <Link href="/Facilities"><span style={styles.navLink}>Facilities</span></Link>
+             <Link href="/Locations"><span style={styles.navLink}>Locations</span></Link>
+            <Link href="/login"><span style={styles.navLink}>LogIn</span></Link>
+            <Link href="/Contact"><span style={styles.navLink}>Contact Us</span></Link>
           </nav>
+
         </div>
       </header>
 

@@ -44,8 +44,8 @@ export default function LocationViewer() {
 }
 
 const styles = {
-  page: { padding: 20, fontFamily: 'Arial, sans-serif', textAlign: 'center' },
-  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 },
+  page: { padding: 20, fontFamily: 'Arial, sans-serif', textAlign: 'center', color: '#0070f3' },
+  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 ,color: '#0070f3' },
   description: { fontSize: 16, marginBottom: 10 },
   time: { fontSize: 14, marginBottom: 20, color: '#555' },
   imageWrapper: { display: 'flex', justifyContent: 'center' },
