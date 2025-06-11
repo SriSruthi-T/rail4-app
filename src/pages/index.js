@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head'; // ✅ Import Head from next/head
 
 export default function Home() {
   const [welcomeMessage, setWelcomeMessage] = useState('');
@@ -67,10 +68,9 @@ export default function Home() {
     </div>
   );
 }
-
 const styles = {
   page: { fontFamily: 'Arial, sans-serif', padding: 20 },
-  header: { backgroundColor: '#f8f9fa', padding: '10px 0' },
+  header: { backgroundColor: '#f8f9fa', padding: '10px 0', color: '#0070f3' },
   navContainer: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   logo: { fontSize: 24, fontWeight: 'bold', marginLeft: 20 },
   nav: { display: 'flex', gap: '15px', marginRight: 20 },
@@ -78,9 +78,10 @@ const styles = {
   ctaNav: { textDecoration: 'none', color: '#0070f3', fontWeight: 'bold' },
   main: { textAlign: 'center', marginTop: 50 },
   welcome: { fontSize: 22, color: '#0070f3', marginBottom: 10 },
-  title: { fontSize: 32, fontWeight: 'bold',color: '#0070f3' },
-  subtitle: { fontSize: 18, margin: '10px 0 20px',,color: '#0070f3'  },
+  title: { fontSize: 32, fontWeight: 'bold', color: '#0070f3' },
+  subtitle: { fontSize: 18, margin: '10px 0 20px', color: '#0070f3' }, // ✅ fixed
   button: { backgroundColor: '#0070f3', color: '#fff', padding: '10px 20px', borderRadius: 5, textDecoration: 'none' },
   imageWrapper: { marginTop: 30 },
   image: { borderRadius: 10, width: '100%', height: 'auto' }
 };
+

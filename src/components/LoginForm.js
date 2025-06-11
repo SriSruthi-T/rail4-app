@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const styles = {
   form: {
@@ -31,23 +31,49 @@ const styles = {
     color: 'green',
     fontWeight: 'bold',
   },
+  errorMessage: {
+    marginTop: 10,
+    color: 'red',
+    fontWeight: 'bold',
+  },
 };
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loginTime, setLoginTime] = useState(null);
+
+  useEffect(() => {
+    if (email && !email.includes('@')) {
+      setErrorMessage('Invalid email format');
+    } else {
+      setErrorMessage('');
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const time = new Date().toLocaleTimeString();
+      setLoginTime(time);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    console.log('Login form loaded');
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (email && password) {
-      // Simulate login success
-      setIsLoggedIn(true);
-      console.log('Logged in with:', { email, password });
-    } else {
-      alert('Please enter both email and password');
+    if (!email || !password) {
+      setErrorMessage('Both fields are required');
+      return;
     }
+
+    setIsLoggedIn(true);
+    console.log('Logged in with:', { email, password });
   };
 
   return (
@@ -72,8 +98,12 @@ export default function LoginForm() {
         <button type="submit" style={styles.button}>Log In</button>
       </form>
 
-      {isLoggedIn && <div style={styles.successMessage}>✅ Successfully logged in!</div>}
+      {errorMessage && <div style={styles.errorMessage}>⚠️ {errorMessage}</div>}
+      {isLoggedIn && (
+        <div style={styles.successMessage}>
+          ✅ Successfully logged in at {loginTime}!
+        </div>
+      )}
     </>
   );
 }
-
